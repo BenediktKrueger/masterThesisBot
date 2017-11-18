@@ -1,7 +1,5 @@
 #!/bin/bash
 
-ls
-
 # Get the OpenWhisk CLI
 mkdir ~/wsk
 curl https://openwhisk.ng.bluemix.net/cli/go/download/linux/amd64/wsk > ~/wsk/wsk
@@ -9,11 +7,7 @@ chmod +x ~/wsk/wsk
 export PATH=$PATH:~/wsk
 
 # Configure the OpenWhisk CLI
-wsk property set --apihost openwhisk.ng.bluemix.net --auth 1e7eec59-5d60-4e87-81c7-eff47e50acbf:VvVJ6jl8D4cjhGJgrMXBwJ6yLe4L3wJ3nJaorxGc0LZpNYdORyF4PFX0eQSsdZqJ -- namespace benedikt.krueger@de.ibm.com_ben
+wsk property set --apihost openwhisk.ng.bluemix.net --auth "${whisk_auth}" -- namespace "${org}_${space}" 
 
 # Deploy the OpenWhisk triggers/actions/rules
-wsk action create helloJS1 helloJs.js
-
-ls 
-
-
+wsk action update helloJS1 helloWorld/helloJs.js
