@@ -5,6 +5,8 @@ var watson = require('watson-developer-cloud');
 
 function myAction(args) {
 
+	//args.text
+
 
     return new Promise(function(resolve, reject) {
 
