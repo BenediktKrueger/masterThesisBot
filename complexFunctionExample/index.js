@@ -5,6 +5,9 @@ var watson = require('watson-developer-cloud');
 
 function myAction(args) {
 
+
+    return new Promise(function(resolve, reject) {
+
     var conversation = watson.conversation({
         username: args.conversationUsername,
         password: args.conversationPassword,
@@ -12,9 +15,17 @@ function myAction(args) {
         version_date: args.version_date
     });
 
-    const lines = args.lines || [];
-    //return { (padded: lines.map(l => leftPad(l, 30, "."))) + msg.conversationKey }
-    return { padded: args.conversationUsername }
+    conversation.listWorkspaces(function(err, response) {
+    if (err) {
+        console.error(err);
+    } else {
+        //console.log(JSON.stringify(response, null, 2));
+        return { padded: JSON.stringify(response, null, 2) }
+
+    }
+    });
+
+    });
 
 }
 
