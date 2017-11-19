@@ -20,8 +20,7 @@ function myAction(args) {
         console.error(err);
     } else {
         //console.log(JSON.stringify(response, null, 2));
-        return { padded: JSON.stringify(response, null, 2) }
-
+        return resolve({ padded: JSON.stringify(response, null, 2) });
     }
     });
 
